@@ -1,0 +1,1 @@
+%windir%\System32\cmd.exe "/K" C:\ProgramData\Miniconda3\Scripts\activate.bat C:\ProgramData\Miniconda3 && conda activate DICOM_Repair && && cd "M:\DICOM_IMPORT\DICOM_Import_Repair" && pythonw.exe dicom_repair.py
