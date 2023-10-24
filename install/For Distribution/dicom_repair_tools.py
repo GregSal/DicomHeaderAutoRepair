@@ -24,7 +24,7 @@ def count_repairs(repair_log: List[str])->str:
             if text.startswith('Checking file'):
                 yield 'Checking file'
             elif text.startswith('Found '):
-                next
+                continue
             else:
                 new_text = text.replace('\r', ' ')
                 new_text = new_text.replace('\n', ' ')

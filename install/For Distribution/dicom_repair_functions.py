@@ -142,8 +142,12 @@ def fix_incorrect_address(dataset: pydicom.Dataset,
 
     Update July 12 2023:
     This problem is now also occurring with MR images from KGH. Added
-    `'Stuart 76,Kingston' in address` ad an additional possible condition for
+    `'Stuart 76,Kingston' in address` as an additional possible condition for
     removing the address.
+
+    Update Sept 19 2023:
+    This problem is now also occurring with PET images from Sunnybrook.
+    Modifying script so address is always removed.
 
     Args:
         dataset (pydicom.Dataset): The full DICOM dataset.
@@ -160,10 +164,7 @@ def fix_incorrect_address(dataset: pydicom.Dataset,
         ])
     if 'InstitutionAddress' in dataset:
         address = dataset.data_element('InstitutionAddress').value
-        institution = dataset.data_element('InstitutionName').value
-        if (('Mississauga' in address) |
-            ('Stuart 76,Kingston' in address) |
-            ('University Health Network' in institution)):
+        if address:
             # Find the first space after 20 characters to create a shortened
             # version of the address.
             address_break = address.find(' ',25)
